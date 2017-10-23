@@ -13,7 +13,7 @@ namespace DemoUniTest
     public class Tests
     {
 
-        // Sum     
+        // Sum 
         [Test]
         public static void SumTest1()
         {
