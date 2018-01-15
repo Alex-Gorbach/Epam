@@ -37,6 +37,8 @@ namespace TestCasesImplementation.Pages
         [FindsBy(How = How.XPath, Using = "//*[@id='contents']/form/p/a/img")]
         private IWebElement submitElement;
 
+
+
         private IAlert alert;
         public string AlertText { get => alert.Text; }
 
@@ -55,10 +57,26 @@ namespace TestCasesImplementation.Pages
 
         public void SetRoute(string depatrure, string arrival)
         {
+            DepartureName.Clear();
+            ArrivalName.Clear();
             DepartureName.SendKeys(depatrure);
             ArrivalName.SendKeys(arrival);
         }
 
+
+        public bool CheckResultTable()
+        {
+            try
+            {
+                IWebElement resultTable = _driver.FindElement(By.Id("add_conbox01"));
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void SetDate(int year,int month,int day)
         {
@@ -112,32 +130,6 @@ namespace TestCasesImplementation.Pages
         {
             alert.Accept();
             alert = null;
-        }
-
-        public string AlertErrorMessage
-        {
-            get
-            {
-                var alertErrorBlock = WaitElement(20, By.ClassName("alert-message"));
-                if (alertErrorBlock != null) return alertErrorBlock.Text;
-                return null;
-            }
-
-        }
-
-        public IWebElement WaitElement(int maxWait, By findBy)
-        {
-            try
-            {
-                var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(maxWait));
-                var element = wait.Until(drv => _driver.FindElement(findBy));
-                return element;
-            }
-            catch (Exception ex)
-            {
-                if (ex is NoSuchElementException || ex is WebDriverTimeoutException) return null;
-                throw ex;
-            }
         }
 
 

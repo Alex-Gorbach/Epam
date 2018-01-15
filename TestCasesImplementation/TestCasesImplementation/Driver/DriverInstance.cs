@@ -2,7 +2,6 @@
 using OpenQA.Selenium.Firefox;
 using System;
 using System.Diagnostics;
-using OpenQA.Selenium.Chrome;
 
 namespace TestCasesImplementation.Driver
 {
@@ -16,7 +15,7 @@ namespace TestCasesImplementation.Driver
         {
             if (_driver == null)
             {
-                _driver = new ChromeDriver();
+                _driver = new FirefoxDriver();
                 _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
                 _driver.Manage().Window.Maximize();
             }

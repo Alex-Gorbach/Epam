@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 using TestCasesImplementation.Pages;
 
 namespace TestCasesImplementation.Steps
@@ -25,27 +26,37 @@ namespace TestCasesImplementation.Steps
 
         public void SearchTicket(string departure, string arrival)
         {
-            var reservationPage = new ReservationPage(_driver);
+            reservationPage = new ReservationPage(_driver);
             reservationPage.OpenPage();
             reservationPage.SetRoute(departure,arrival);
             reservationPage.Submit();
+            reservationPage.SwitchToAlert();
+            
         }
+
+        public string GetAlertText()
+        {
+            var text = reservationPage.AlertText;
+            return text;
+        }
+        internal double IsSubmit()
+        {
+            throw new NotImplementedException();
+        }
+
 
         public void SearchTicketWithDate(int year,int month,int day)
         {
             var reservationPage = new ReservationPage(_driver);
             reservationPage.OpenPage();
-            reservationPage.SetRoute(defaultDeparture, defaultArrival);
             reservationPage.SetDate(year,month,day);
             reservationPage.Submit();
         }
 
-        public void SearchTicketWithTime(int year, int month, int day, int hour)
+        public void SearchTicketWithTime( int hour)
         {
             var reservationPage = new ReservationPage(_driver);
             reservationPage.OpenPage();
-            reservationPage.SetRoute(defaultDeparture, defaultArrival);
-            reservationPage.SetDate(year, month, day);
             reservationPage.SetHour(hour);
             reservationPage.Submit();
         }
@@ -56,8 +67,18 @@ namespace TestCasesImplementation.Steps
             reservationPage.OpenPage();
             reservationPage.SelectAdultPassenger(adultCount);
             reservationPage.SelectChildPassenger(childrenCount);
-            reservationPage.SetRoute(defaultDeparture, defaultArrival);
             reservationPage.Submit();
+        }
+
+        public string GetMassegeFromResult()
+        {
+            var searchResultPage=new SearchResultPage(_driver);
+            return searchResultPage.GetMessageFromPage();
+        }
+
+        public bool GetResultTable()
+        {
+            return reservationPage.CheckResultTable();
         }
 
     }
