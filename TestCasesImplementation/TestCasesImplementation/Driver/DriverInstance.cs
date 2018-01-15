@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Firefox;
 using System;
 using System.Diagnostics;
+using OpenQA.Selenium.Chrome;
 
 namespace TestCasesImplementation.Driver
 {
@@ -15,7 +16,7 @@ namespace TestCasesImplementation.Driver
         {
             if (_driver == null)
             {
-                _driver = new FirefoxDriver();
+                _driver = new ChromeDriver();
                 _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
                 _driver.Manage().Window.Maximize();
             }
@@ -27,7 +28,7 @@ namespace TestCasesImplementation.Driver
             _driver.Quit();
             _driver = null;
 
-            foreach (var process in Process.GetProcessesByName("geckodriver"))
+            foreach (var process in Process.GetProcessesByName("chromedriver"))
             {
                 process.Kill();
             }

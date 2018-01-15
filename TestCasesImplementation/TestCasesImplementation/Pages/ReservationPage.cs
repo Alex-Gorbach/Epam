@@ -68,7 +68,7 @@ namespace TestCasesImplementation.Pages
         {
             try
             {
-                IWebElement resultTable = _driver.FindElement(By.Id("add_conbox01"));
+                IWebElement resultTable = _driver.FindElement(By.XPath("//*[@id='contents']/form[1]/div[2]"));
             }
             catch
             {
@@ -81,11 +81,11 @@ namespace TestCasesImplementation.Pages
         public void SetDate(int year,int month,int day)
         {
            var setYear =new SelectElement(startYear);
-            setYear.SelectByValue(Convert.ToString(year));
+            setYear.SelectByText(Convert.ToString(year));
            var setMonth = new SelectElement(startMonth);
-            setMonth.SelectByValue(Convert.ToString(month));
+            setMonth.SelectByText(Convert.ToString(month));
            var setDay = new SelectElement(startDay);
-            setDay.SelectByValue(Convert.ToString(day));
+            setDay.SelectByText(Convert.ToString(day));
         }
 
 

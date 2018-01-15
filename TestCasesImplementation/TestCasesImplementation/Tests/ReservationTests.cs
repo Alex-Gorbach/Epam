@@ -46,8 +46,8 @@ namespace TestCasesImplementation.Tests
         [Test]
         public void InvalidDate()
         {
-           steps.SearchTicketWithDate(year,month,day-1);
-            Assert.AreEqual(alertDate,steps.GetAlertText());
+            steps.SearchTicketWithDate(year, month, day - 1);
+            Assert.AreEqual(alertDate, steps.GetAlertText());
         }
 
         [Test]
@@ -60,14 +60,14 @@ namespace TestCasesImplementation.Tests
         [Test]
         public void InvalidPassengerNumber()
         {
-            steps.SearchWithPassangers(adultPassenger,childPassenger);
+            steps.SearchWithPassangers(adultPassenger, childPassenger);
             Assert.AreEqual(alertPassenger, steps.GetAlertText());
         }
 
         [Test]
         public void InvalidStation()
         {
-            steps.SearchTicket(defaultDeparture,invalidArrival);
+            steps.SearchTicket(defaultDeparture, invalidArrival);
             Assert.AreEqual(resultMessage, steps.GetMassegeFromResult());
         }
 
@@ -81,28 +81,28 @@ namespace TestCasesImplementation.Tests
         [Test]
         public void SearchRouteWithTommorow()
         {
-            steps.SearchTicketWithDate(year,month,tommorow);
+            steps.SearchTicketWithDate(year, month, tommorow);
             Assert.IsTrue(steps.GetResultTable());
         }
 
         [Test]
         public void SearchRouteWithManyPassengers()
         {
-            steps.SearchWithPassangers(10,10);
+            steps.SearchWithPassangers(9, 9);
             Assert.IsTrue(steps.GetResultTable());
         }
 
         [Test]
         public void SearchRouteWithFutereHour()
         {
-            steps.SearchTicketWithTime(hour+1);
+            steps.SearchTicketWithTime(hour + 1);
             Assert.IsTrue(steps.GetResultTable());
         }
 
         [Test]
         public void SearchRouteWithManyAdultPassangers()
         {
-            steps.SearchWithPassangers(10,0);
+            steps.SearchWithPassangers(9, 0);
             Assert.IsTrue(steps.GetResultTable());
         }
 

@@ -30,12 +30,13 @@ namespace TestCasesImplementation.Steps
             reservationPage.OpenPage();
             reservationPage.SetRoute(departure,arrival);
             reservationPage.Submit();
-            reservationPage.SwitchToAlert();
+           
             
         }
 
         public string GetAlertText()
         {
+            reservationPage.SwitchToAlert();
             var text = reservationPage.AlertText;
             return text;
         }
@@ -78,7 +79,8 @@ namespace TestCasesImplementation.Steps
 
         public bool GetResultTable()
         {
-            return reservationPage.CheckResultTable();
+           var result= reservationPage.CheckResultTable();
+            return result;
         }
 
     }
